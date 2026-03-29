@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patagônia Argentina — Travel Gear</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--surface:#141416;--surface-hover:#1c1c20;--border:#2a2a30;--text:#e8e6e3;--text-muted:#8a8a8f;--accent:#c9a96e;--accent-dim:rgba(201,169,110,0.12);--accent-glow:rgba(201,169,110,0.06)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:#0a0a0b !important}
+  body{background:#0a0a0b !important;color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+  body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+  .hero{position:relative;padding:56px 24px 36px;text-align:center;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border);border-radius:100px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;animation:fadeDown .8s ease}
+  .hero-badge span{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,8vw,52px);line-height:1.1;letter-spacing:-.5px;margin-bottom:14px;animation:fadeDown .8s ease .1s both;color:#ffffff}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero>p{font-size:13px;color:var(--text-muted);font-weight:300;max-width:340px;margin:0 auto;line-height:1.65;animation:fadeDown .8s ease .2s both}
+
+  .criteria{max-width:480px;margin:0 auto;padding:0 24px 28px;animation:fadeDown .8s ease .25s both}
+  .criteria-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 20px;color:#ffffff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s}
+  .criteria-toggle:hover{border-color:rgba(201,169,110,0.3);background:var(--surface-hover)}
+  .criteria-toggle .chevron{transition:transform .3s;font-size:11px;color:var(--accent)}
+  .criteria-toggle.open .chevron{transform:rotate(180deg)}
+  .criteria-panel{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.25,.46,.45,.94),opacity .3s;opacity:0}
+  .criteria-panel.open{max-height:600px;opacity:1}
+  .criteria-list{padding:20px 0 4px;display:flex;flex-direction:column;gap:14px}
+  .criteria-item{display:flex;gap:14px;align-items:flex-start}
+  .criteria-icon{width:36px;height:36px;border-radius:10px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+  .criteria-text h4{font-size:13px;font-weight:600;margin-bottom:2px;line-height:1.3;color:#ffffff}
+  .criteria-text p{font-size:12px;color:var(--text-muted);font-weight:300;line-height:1.55}
+
+  .tabs-container{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;animation:fadeDown .8s ease .3s both}
+  .tabs{display:flex;max-width:480px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:1;padding:15px 8px;background:none;border:none;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;position:relative;transition:color .3s;white-space:nowrap;text-align:center}
+  .tab:hover{color:var(--text)}
+  .tab.active{color:var(--accent)}
+  .tab.active::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:2px;background:var(--accent);border-radius:2px;animation:tabLine .3s ease}
+
+  .content{max-width:480px;margin:0 auto;padding:24px 24px 80px}
+  .category-intro{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+  .category-intro h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;margin-bottom:4px;color:#ffffff}
+  .category-intro p{font-size:13px;color:var(--text-muted);font-weight:300}
+
+  .gender-section{margin-bottom:28px;animation:fadeUp .5s ease both}
+  .gender-label{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:2px}
+  .gender-label::before{content:'';width:12px;height:1px;background:var(--accent)}
+  .gender-label span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:500}
+
+  .products{display:flex;flex-direction:column;gap:14px}
+  .product-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .35s cubic-bezier(.25,.46,.45,.94);animation:fadeUp .6s ease both}
+  .product-card:nth-child(1){animation-delay:.05s}
+  .product-card:nth-child(2){animation-delay:.12s}
+  .product-card:nth-child(3){animation-delay:.19s}
+  .product-card:hover{border-color:rgba(201,169,110,0.25);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(201,169,110,0.08)}
+
+  .product-inner{display:flex;gap:14px;padding:14px;align-items:center}
+  .product-img{width:86px;height:86px;border-radius:12px;background:#f0eeeb;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .product-img img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+  .product-info{flex:1;min-width:0}
+  .product-brand{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:3px}
+  .product-name{font-size:13.5px;font-weight:600;line-height:1.4;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#ffffff}
+  .product-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .product-price{font-size:15px;font-weight:600;color:#ffffff}
+  .product-rating{display:flex;align-items:center;gap:4px;font-size:11.5px;color:var(--text-muted)}
+  .product-rating svg{width:12px;height:12px;fill:var(--accent)}
+
+  .product-link{display:block;padding:11px 16px;border-top:1px solid var(--border);text-align:center;color:var(--accent);text-decoration:none;font-size:12.5px;font-weight:500;letter-spacing:.3px;transition:all .25s}
+  .product-link:hover{background:var(--accent-dim)}
+  .product-link .arrow{margin-left:6px;display:inline-block;transition:transform .25s}
+  .product-link:hover .arrow{transform:translateX(4px)}
+
+  .empty-state{text-align:center;padding:52px 20px;animation:fadeUp .6s ease}
+  .empty-icon{width:44px;height:44px;border:1px dashed var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--text-muted);font-size:18px}
+  .empty-state h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;margin-bottom:6px}
+  .empty-state p{font-size:12.5px;color:var(--text-muted);font-weight:300;line-height:1.6}
+
+  .footer{text-align:center;padding:24px;border-top:1px solid var(--border);max-width:480px;margin:0 auto}
+  .footer p{font-size:11px;color:var(--text-muted);font-weight:300;letter-spacing:.5px}
+  .footer a{color:var(--accent);text-decoration:none}
+  .price-note{text-align:center;font-size:10.5px;color:var(--text-muted);font-weight:300;padding:16px 0 0;font-style:italic}
+
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes tabLine{from{width:0;left:50%}to{width:60%;left:20%}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge"><span></span> Travel Gear Guide</div>
+  <h1>Patagônia <em>Argentina</em></h1>
+  <p>Os itens que escolhi para encarar as trilhas no fim do mundo.</p>
+</div>
+
+<div class="tabs-container">
+  <div class="tabs">
+    <button class="tab active" data-tab="calcados">Calçados</button>
+    <button class="tab" data-tab="roupas">Roupas</button>
+    <button class="tab" data-tab="mochila">Mochila</button>
+    <button class="tab" data-tab="snacks">Snacks</button>
+  </div>
+</div>
+
+<div class="content" id="content"></div>
+
+<div class="footer">
+  <p>Feito com cuidado por <a href="https://veredago.my.canva.site/linktree" target="_blank" rel="noopener">@veredago</a></p>
+</div>
+
+<script>
+const data = {
+  calcados: {
+    title: "Calçados",
+    subtitle: "Botas de trilha impermeáveis para encarar qualquer terreno",
+    feminino: [
+      {
+        brand: "Quechua",
+        name: "Bota Feminina Impermeável NH100 Mid",
+        price: "R$ 399,99",
+        rating: "4.7",
+        img: "https://decathlonstore.vtexassets.com/unsafe/fit-in/1275x1275/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F165845566%2Fshoe-nh100-mid-wp-w-purple-uk-8-eu42-roxa-35-br1.jpg%3Fv%3D638742121934230000",
+        link: "https://www.decathlon.com.br/bota-feminina-impermeavel-de-trilha-nh100-mid-cinza-8871765-quechua/p"
+      },
+      {
+        brand: "Quechua",
+        name: "Bota Feminina Impermeável MH100 Mid",
+        price: "R$ 499,99",
+        rating: "4.6",
+        img: "https://decathlonpro.vtexassets.com/arquivos/ids/172261530/bota-feminina-impermeavel-de-trilha-mh100-mid-quechua-azul-35-br1.jpg?v=639002105249870000",
+        link: "https://www.decathlon.com.br/bota-feminina-impermeavel-de-trilha-mh100-mid-azul-cinza-8851131-quechua/p"
+      }
+    ],
+    masculino: [
+      {
+        brand: "Quechua",
+        name: "Bota Masculina de Trilha NH150 Mid",
+        price: "R$ 399,99",
+        rating: "4.5",
+        img: "https://decathlonstore.vtexassets.com/unsafe/fit-in/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F2588523%2Fnh150-mid-protect-men-sho-uk-11---eu-46-asphalt-blue-481.jpg%3Fv%3D638834546269700000",
+        link: "https://www.decathlon.com.br/bota-masculina-impermeavel-de-trilha-nh150-mid-bege-azul-8554571-quechua/p"
+      },
+      {
+        brand: "Quechua",
+        name: "Bota Masculina de Trilha MH500 Mid",
+        price: "R$ 699,99",
+        rating: "4.7",
+        img: "https://decathlonpro.vtexassets.com/arquivos/ids/25513171/shoes-mh500-mid-wtp-mid-m-m-shoes-pe-45-marrom-401.jpg?v=638064622466370000",
+        link: "https://www.decathlon.com.br/bota-masculina-de-trilha-mh500-mid-quechua-marrom-8618767-quechua/p"
+      }
+    ]
+  },
+  roupas: {
+    title: "Roupas",
+    subtitle: "Em breve — selecionando as melhores peças",
+    feminino: [],
+    masculino: []
+  },
+  mochila: {
+    title: "Mochila",
+    subtitle: "Em breve — testando modelos para a viagem",
+    feminino: [],
+    masculino: []
+  },
+  snacks: {
+    title: "Snacks",
+    subtitle: "Em breve — lanches práticos para as trilhas",
+    feminino: [],
+    masculino: []
+  }
+};
+
+const content = document.getElementById('content');
+
+function card(item, i) {
+  return `
+    <div class="product-card" style="animation-delay:${i * 0.07}s">
+      <div class="product-inner">
+        <div class="product-img">
+          <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.parentElement.innerHTML='🥾'">
+        </div>
+        <div class="product-info">
+          <div class="product-brand">${item.brand}</div>
+          <div class="product-name">${item.name}</div>
+          <div class="product-meta">
+            <span class="product-price">${item.price}</span>
+            <span class="product-rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ${item.rating}
+            </span>
+          </div>
+        </div>
+      </div>
+      <a class="product-link" href="${item.link}" target="_blank" rel="noopener">Ver na Decathlon <span class="arrow">&rarr;</span></a>
+    </div>`;
+}
+
+function render(key) {
+  const cat = data[key];
+  const hf = cat.feminino && cat.feminino.length > 0;
+  const hm = cat.masculino && cat.masculino.length > 0;
+
+  const criteriaHtml = key === 'calcados' ? `
+    <div class="criteria" style="padding:0 0 28px; max-width:none;">
+      <button class="criteria-toggle" id="criteriaToggle">
+        Por que escolhi esses itens?
+        <span class="chevron">&#9660;</span>
+      </button>
+      <div class="criteria-panel" id="criteriaPanel">
+        <div class="criteria-list">
+          <div class="criteria-item">
+            <div class="criteria-icon">🎨</div>
+            <div class="criteria-text">
+              <h4>Cor escura</h4>
+              <p>Cores claras são inimigas da trilha. Na Patagônia, trilhas terrosas e lamacentas sujam fácil, então tons escuros são mais práticos.</p>
+            </div>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-icon">🥾</div>
+            <div class="criteria-text">
+              <h4>Cano mais alto</h4>
+              <p>Melhor estabilidade para os tornozelos em terrenos irregulares. Recomendado especialmente para trilheiros menos experientes.</p>
+            </div>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-icon">💧</div>
+            <div class="criteria-text">
+              <h4>Impermeabilidade</h4>
+              <p>A umidade é constante. Pode pegar chuva e, no inverno, neve. Pés secos ajudam no conforto e na manutenção da temperatura corporal.</p>
+            </div>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-icon">🏔️</div>
+            <div class="criteria-text">
+              <h4>Cravos multidirecionais</h4>
+              <p>Cravos multidirecionais e um pouco mais altos ajudam na aderência em terrenos molhados e lamacentos da região.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>` : '';
+
+  if (!hf && !hm) {
+    content.innerHTML = `
+      ${criteriaHtml}
+      <div class="category-intro">
+        <h2>${cat.title}</h2>
+        <p>${cat.subtitle}</p>
+      </div>
+      <div class="empty-state">
+        <div class="empty-icon">✦</div>
+        <h3>Em breve</h3>
+        <p>Ainda pesquisando os melhores itens<br>para essa categoria. Volte logo!</p>
+      </div>`;
+
+    const criteriaToggle = document.getElementById('criteriaToggle');
+    const criteriaPanel = document.getElementById('criteriaPanel');
+    if (criteriaToggle && criteriaPanel) {
+      criteriaToggle.addEventListener('click', function () {
+        this.classList.toggle('open');
+        criteriaPanel.classList.toggle('open');
+      });
+    }
+    return;
+  }
+
+  let h = `
+    ${criteriaHtml}
+    <div class="category-intro">
+      <h2>${cat.title}</h2>
+      <p>${cat.subtitle}</p>
+    </div>`;
+
+  if (hf) {
+    h += '<div class="gender-section"><div class="gender-label"><span>Feminino</span></div><div class="products">';
+    cat.feminino.forEach((item, i) => {
+      h += card(item, i);
+    });
+    h += '</div></div>';
+  }
+
+  if (hm) {
+    h += '<div class="gender-section"><div class="gender-label"><span>Masculino</span></div><div class="products">';
+    cat.masculino.forEach((item, i) => {
+      h += card(item, i + (cat.feminino ? cat.feminino.length : 0));
+    });
+    h += '</div></div>';
+  }
+
+  h += '<p class="price-note">* Preços podem estar diferentes no site. Confirme antes de comprar.</p>';
+  content.innerHTML = h;
+
+  const criteriaToggle = document.getElementById('criteriaToggle');
+  const criteriaPanel = document.getElementById('criteriaPanel');
+  if (criteriaToggle && criteriaPanel) {
+    criteriaToggle.addEventListener('click', function () {
+      this.classList.toggle('open');
+      criteriaPanel.classList.toggle('open');
+    });
+  }
+}
+
+document.querySelectorAll('.tab').forEach((tab) => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
+    tab.classList.add('active');
+    render(tab.dataset.tab);
+  });
+});
+
+render('calcados');
+</script>
+</body>
+</html>
