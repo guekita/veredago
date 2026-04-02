@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Patagônia Argentina — Travel Gear</title>
+<title>Travel Gear — @veredago</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0a0a0b;--surface:#141416;--surface-hover:#1c1c20;--border:#2a2a30;--text:#e8e6e3;--text-muted:#8a8a8f;--accent:#c9a96e;--accent-dim:rgba(201,169,110,0.12);--accent-glow:rgba(201,169,110,0.06)}
@@ -12,36 +12,83 @@
   body{background:#0a0a0b !important;color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
   body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
 
-  .hero{position:relative;padding:56px 24px 36px;text-align:center;overflow:hidden}
+  /* ── HERO ── */
+  .hero{position:relative;padding:56px 24px 40px;text-align:center;overflow:hidden}
   .hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border);border-radius:100px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;animation:fadeDown .8s ease}
   .hero-badge span{width:5px;height:5px;border-radius:50%;background:var(--accent)}
   .hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,8vw,52px);line-height:1.1;letter-spacing:-.5px;margin-bottom:14px;animation:fadeDown .8s ease .1s both;color:#ffffff}
   .hero h1 em{font-style:italic;color:var(--accent)}
-  .hero>p{font-size:13px;color:var(--text-muted);font-weight:300;max-width:340px;margin:0 auto;line-height:1.65;animation:fadeDown .8s ease .2s both}
+  .hero>p{font-size:13px;color:var(--text-muted);font-weight:300;max-width:380px;margin:0 auto;line-height:1.65;animation:fadeDown .8s ease .2s both}
 
-  .criteria{max-width:480px;margin:0 auto;padding:0 24px 28px;animation:fadeDown .8s ease .25s both}
-  .criteria-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 20px;color:#ffffff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s}
-  .criteria-toggle:hover{border-color:rgba(201,169,110,0.3);background:var(--surface-hover)}
-  .criteria-toggle .chevron{transition:transform .3s;font-size:11px;color:var(--accent)}
-  .criteria-toggle.open .chevron{transform:rotate(180deg)}
-  .criteria-panel{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.25,.46,.45,.94),opacity .3s;opacity:0}
-  .criteria-panel.open{max-height:600px;opacity:1}
-  .criteria-list{padding:20px 0 4px;display:flex;flex-direction:column;gap:14px}
-  .criteria-item{display:flex;gap:14px;align-items:flex-start}
-  .criteria-icon{width:36px;height:36px;border-radius:10px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
-  .criteria-text h4{font-size:13px;font-weight:600;margin-bottom:2px;line-height:1.3;color:#ffffff}
-  .criteria-text p{font-size:12px;color:var(--text-muted);font-weight:300;line-height:1.55}
+  /* ── NAVIGATION SECTIONS ── */
+  .section-nav{max-width:480px;margin:0 auto;padding:0 24px 12px;animation:fadeDown .8s ease .25s both}
+  .section-tabs{display:flex;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .section-tab{flex:1;padding:14px 8px;background:none;border:none;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .3s;text-align:center;position:relative}
+  .section-tab:hover{color:var(--text)}
+  .section-tab.active{color:var(--accent);background:var(--accent-dim)}
+  .section-tab:not(:last-child)::after{content:'';position:absolute;right:0;top:25%;height:50%;width:1px;background:var(--border)}
 
-  .tabs-container{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;animation:fadeDown .8s ease .3s both}
-  .tabs{display:flex;max-width:480px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+  /* ── MAIN CONTENT WRAPPER ── */
+  .main{max-width:480px;margin:0 auto;padding:0 24px 80px}
+
+  /* ── DESTINATIONS SECTION ── */
+  .destinations-grid{display:flex;flex-direction:column;gap:16px;padding-top:24px}
+  .destination-card{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;transition:all .4s cubic-bezier(.25,.46,.45,.94);animation:fadeUp .6s ease both;border:1px solid var(--border)}
+  .destination-card:nth-child(1){animation-delay:.05s}
+  .destination-card:nth-child(2){animation-delay:.12s}
+  .destination-card:nth-child(3){animation-delay:.19s}
+  .destination-card:hover{border-color:rgba(201,169,110,0.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.4),0 0 0 1px rgba(201,169,110,0.1)}
+  .destination-cover{width:100%;height:200px;object-fit:cover;display:block;filter:brightness(0.65);transition:filter .4s}
+  .destination-card:hover .destination-cover{filter:brightness(0.75)}
+  .destination-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%)}
+  .destination-flag{font-size:20px;margin-bottom:6px}
+  .destination-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#fff;line-height:1.15;margin-bottom:4px}
+  .destination-desc{font-size:12px;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.5}
+  .destination-tag{position:absolute;top:16px;right:16px;padding:5px 12px;border-radius:100px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+  .destination-tag.ready{background:rgba(201,169,110,0.2);color:var(--accent);border:1px solid rgba(201,169,110,0.3)}
+  .destination-tag.soon{background:rgba(255,255,255,0.08);color:var(--text-muted);border:1px solid rgba(255,255,255,0.1)}
+
+  /* ── CURATED SECTION ── */
+  .curated-intro{padding-top:28px;padding-bottom:20px;text-align:center;animation:fadeUp .6s ease both}
+  .curated-intro h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#fff;margin-bottom:6px}
+  .curated-intro p{font-size:13px;color:var(--text-muted);font-weight:300;line-height:1.6;max-width:360px;margin:0 auto}
+  .curated-categories{display:flex;flex-direction:column;gap:12px;padding-top:8px}
+
+  /* ── EXPANDABLE GROUP ── */
+  .curated-group{animation:fadeUp .5s ease both;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .3s}
+  .curated-group.open{border-color:rgba(201,169,110,0.2)}
+  .curated-group-toggle{display:flex;align-items:center;gap:12px;width:100%;padding:16px 18px;background:var(--surface);border:none;cursor:pointer;transition:background .3s;text-align:left;font-family:'DM Sans',sans-serif}
+  .curated-group-toggle:hover{background:var(--surface-hover)}
+  .curated-group-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+  .curated-group-info{flex:1;min-width:0}
+  .curated-group-info h3{font-size:14px;font-weight:600;color:#fff;margin-bottom:1px}
+  .curated-group-info p{font-size:11.5px;color:var(--text-muted);font-weight:300}
+  .curated-group-count{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:8px;background:var(--accent-dim);color:var(--accent);font-size:11px;font-weight:600;padding:0 7px;margin-right:4px}
+  .curated-group-chevron{color:var(--accent);font-size:12px;transition:transform .3s;flex-shrink:0}
+  .curated-group.open .curated-group-chevron{transform:rotate(180deg)}
+  .curated-group-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.25,.46,.45,.94),opacity .3s;opacity:0}
+  .curated-group.open .curated-group-body{max-height:2000px;opacity:1}
+  .curated-group-content{padding:4px 16px 18px}
+
+  /* ── DESTINATION DETAIL VIEW ── */
+  .detail-back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;padding:20px 0 8px;transition:color .3s;animation:fadeDown .5s ease}
+  .detail-back:hover{color:var(--accent)}
+  .detail-back .back-arrow{font-size:16px;transition:transform .3s}
+  .detail-back:hover .back-arrow{transform:translateX(-3px)}
+  .detail-hero{text-align:center;padding:8px 0 20px;animation:fadeDown .6s ease .05s both}
+  .detail-hero h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(28px,7vw,40px);color:#fff;margin-bottom:6px}
+  .detail-hero p{font-size:13px;color:var(--text-muted);font-weight:300;line-height:1.6}
+
+  /* ── SHARED: TABS, CARDS, ETC ── */
+  .tabs-container{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin:0 -24px;padding:0 24px;animation:fadeDown .8s ease .3s both}
+  .tabs{display:flex;overflow-x:auto;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tab{flex:1;padding:15px 8px;background:none;border:none;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;position:relative;transition:color .3s;white-space:nowrap;text-align:center}
   .tab:hover{color:var(--text)}
   .tab.active{color:var(--accent)}
   .tab.active::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:2px;background:var(--accent);border-radius:2px;animation:tabLine .3s ease}
 
-  .content{max-width:480px;margin:0 auto;padding:24px 24px 80px}
   .category-intro{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border)}
   .category-intro h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;margin-bottom:4px;color:#ffffff}
   .category-intro p{font-size:13px;color:var(--text-muted);font-weight:300}
@@ -74,15 +121,29 @@
   .product-link .arrow{margin-left:6px;display:inline-block;transition:transform .25s}
   .product-link:hover .arrow{transform:translateX(4px)}
 
+  .criteria{margin-bottom:20px}
+  .criteria-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 20px;color:#ffffff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s}
+  .criteria-toggle:hover{border-color:rgba(201,169,110,0.3);background:var(--surface-hover)}
+  .criteria-toggle .chevron{transition:transform .3s;font-size:11px;color:var(--accent)}
+  .criteria-toggle.open .chevron{transform:rotate(180deg)}
+  .criteria-panel{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.25,.46,.45,.94),opacity .3s;opacity:0}
+  .criteria-panel.open{max-height:600px;opacity:1}
+  .criteria-list{padding:20px 0 4px;display:flex;flex-direction:column;gap:14px}
+  .criteria-item{display:flex;gap:14px;align-items:flex-start}
+  .criteria-icon{width:36px;height:36px;border-radius:10px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+  .criteria-text h4{font-size:13px;font-weight:600;margin-bottom:2px;line-height:1.3;color:#ffffff}
+  .criteria-text p{font-size:12px;color:var(--text-muted);font-weight:300;line-height:1.55}
+
   .empty-state{text-align:center;padding:52px 20px;animation:fadeUp .6s ease}
   .empty-icon{width:44px;height:44px;border:1px dashed var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--text-muted);font-size:18px}
   .empty-state h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;margin-bottom:6px}
   .empty-state p{font-size:12.5px;color:var(--text-muted);font-weight:300;line-height:1.6}
 
+  .price-note{text-align:center;font-size:10.5px;color:var(--text-muted);font-weight:300;padding:16px 0 0;font-style:italic}
+
   .footer{text-align:center;padding:24px;border-top:1px solid var(--border);max-width:480px;margin:0 auto}
   .footer p{font-size:11px;color:var(--text-muted);font-weight:300;letter-spacing:.5px}
   .footer a{color:var(--accent);text-decoration:none}
-  .price-note{text-align:center;font-size:10.5px;color:var(--text-muted);font-weight:300;padding:16px 0 0;font-style:italic}
 
   @keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -93,218 +154,351 @@
 
 <div class="hero">
   <div class="hero-badge"><span></span> Travel Gear Guide</div>
-  <h1>Patagônia <em>Argentina</em></h1>
-  <p>Os itens que escolhi para encarar as trilhas no fim do mundo.</p>
+  <h1>Gear para <em>Viajar</em></h1>
+  <p>Recomendações de equipamentos testados e aprovados para cada destino — ou para montar seu kit do seu jeito.</p>
 </div>
 
-<div class="tabs-container">
-  <div class="tabs">
-    <button class="tab active" data-tab="calcados">Calçados</button>
-    <button class="tab" data-tab="roupas">Roupas</button>
-    <button class="tab" data-tab="mochila">Mochila</button>
-    <button class="tab" data-tab="snacks">Snacks</button>
+<div class="section-nav">
+  <div class="section-tabs">
+    <button class="section-tab active" data-section="destinos">🗺️ Destinos</button>
+    <button class="section-tab" data-section="curadoria">✦ Curadoria</button>
   </div>
 </div>
 
-<div class="content" id="content"></div>
+<div class="main" id="main"></div>
 
 <div class="footer">
   <p>Feito com cuidado por <a href="https://veredago.my.canva.site/linktree" target="_blank" rel="noopener">@veredago</a></p>
 </div>
 
 <script>
-const data = {
-  calcados: {
-    title: "Calçados",
-    subtitle: "Botas de trilha impermeáveis para encarar qualquer terreno",
-    feminino: [
-      {
-        brand: "Quechua",
-        name: "Bota Feminina Impermeável MH100 Mid",
-        price: "R$ 499,99",
-        rating: "4.6",
-        img: "https://decathlonpro.vtexassets.com/arquivos/ids/172261530/bota-feminina-impermeavel-de-trilha-mh100-mid-quechua-azul-35-br1.jpg?v=639002105249870000",
-        link: "https://www.decathlon.com.br/bota-feminina-impermeavel-de-trilha-mh100-mid-azul-cinza-8851131-quechua/p"
-      }
-    ],
-    masculino: [
-      {
-        brand: "Quechua",
-        name: "Bota Masculina de Trilha NH150 Mid",
-        price: "R$ 399,99",
-        rating: "4.5",
-        img: "https://decathlonstore.vtexassets.com/unsafe/fit-in/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F2588523%2Fnh150-mid-protect-men-sho-uk-11---eu-46-asphalt-blue-481.jpg%3Fv%3D638834546269700000",
-        link: "https://www.decathlon.com.br/bota-masculina-impermeavel-de-trilha-nh150-mid-bege-azul-8554571-quechua/p"
+// ═══════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════
+
+const destinations = {
+  patagonia: {
+    id: 'patagonia',
+    flag: '🇦🇷',
+    title: 'Patagônia Argentina',
+    cover: 'https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80',
+    desc: 'Trilhas épicas no fim do mundo',
+    tagline: 'Os itens que escolhi para encarar as trilhas no fim do mundo.',
+    ready: true,
+    categories: {
+      calcados: {
+        title: "Calçados",
+        subtitle: "Botas de trilha impermeáveis para encarar qualquer terreno",
+        criteria: [
+          { icon: '🎨', title: 'Cor escura', text: 'Cores claras são inimigas da trilha. Na Patagônia, trilhas terrosas e lamacentas sujam fácil, então tons escuros são mais práticos.' },
+          { icon: '🥾', title: 'Cano mais alto', text: 'Melhor estabilidade para os tornozelos em terrenos irregulares. Recomendado especialmente para trilheiros menos experientes.' },
+          { icon: '💧', title: 'Impermeabilidade', text: 'A umidade é constante. Pode pegar chuva e, no inverno, neve. Pés secos ajudam no conforto e na manutenção da temperatura corporal.' },
+          { icon: '🏔️', title: 'Cravos multidirecionais', text: 'Cravos multidirecionais e um pouco mais altos ajudam na aderência em terrenos molhados e lamacentos da região.' }
+        ],
+        feminino: [
+          { brand: "Quechua", name: "Bota Feminina Impermeável NH100 Mid", price: "R$ 399,99", rating: "4.7", img: "https://decathlonstore.vtexassets.com/unsafe/fit-in/1275x1275/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F165845566%2Fshoe-nh100-mid-wp-w-purple-uk-8-eu42-roxa-35-br1.jpg%3Fv%3D638742121934230000", link: "https://www.decathlon.com.br/bota-feminina-impermeavel-de-trilha-nh100-mid-cinza-8871765-quechua/p", store: "Decathlon" },
+          { brand: "Quechua", name: "Bota Feminina Impermeável MH100 Mid", price: "R$ 499,99", rating: "4.6", img: "https://decathlonpro.vtexassets.com/arquivos/ids/172261530/bota-feminina-impermeavel-de-trilha-mh100-mid-quechua-azul-35-br1.jpg?v=639002105249870000", link: "https://www.decathlon.com.br/bota-feminina-impermeavel-de-trilha-mh100-mid-azul-cinza-8851131-quechua/p", store: "Decathlon" }
+        ],
+        masculino: [
+          { brand: "Quechua", name: "Bota Masculina de Trilha NH150 Mid", price: "R$ 399,99", rating: "4.5", img: "https://decathlonstore.vtexassets.com/unsafe/fit-in/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F2588523%2Fnh150-mid-protect-men-sho-uk-11---eu-46-asphalt-blue-481.jpg%3Fv%3D638834546269700000", link: "https://www.decathlon.com.br/bota-masculina-impermeavel-de-trilha-nh150-mid-bege-azul-8554571-quechua/p", store: "Decathlon" },
+          { brand: "Quechua", name: "Bota Masculina de Trilha MH500 Mid", price: "R$ 699,99", rating: "4.7", img: "https://decathlonpro.vtexassets.com/arquivos/ids/25513171/shoes-mh500-mid-wtp-mid-m-m-shoes-pe-45-marrom-401.jpg?v=638064622466370000", link: "https://www.decathlon.com.br/bota-masculina-de-trilha-mh500-mid-quechua-marrom-8618767-quechua/p", store: "Decathlon" }
+        ]
       },
-      {
-        brand: "Quechua",
-        name: "Bota Masculina de Trilha MH500 Mid",
-        price: "R$ 699,99",
-        rating: "4.7",
-        img: "https://decathlonpro.vtexassets.com/arquivos/ids/25513171/shoes-mh500-mid-wtp-mid-m-m-shoes-pe-45-marrom-401.jpg?v=638064622466370000",
-        link: "https://www.decathlon.com.br/bota-masculina-de-trilha-mh500-mid-quechua-marrom-8618767-quechua/p"
-      }
-    ]
-  },
-  roupas: {
-    title: "Roupas",
-    subtitle: "Em breve — selecionando as melhores peças",
-    feminino: [],
-    masculino: []
-  },
-  mochila: {
-    title: "Mochila",
-    subtitle: "Em breve — testando modelos para a viagem",
-    feminino: [],
-    masculino: []
-  },
-  snacks: {
-    title: "Snacks",
-    subtitle: "Em breve — lanches práticos para as trilhas",
-    feminino: [],
-    masculino: []
+      roupas: { title: "Roupas", subtitle: "Em breve — selecionando as melhores peças", feminino: [], masculino: [] },
+      mochila: { title: "Mochila", subtitle: "Em breve — testando modelos para a viagem", feminino: [], masculino: [] },
+      snacks: { title: "Snacks", subtitle: "Em breve — lanches práticos para as trilhas", feminino: [], masculino: [] }
+    }
   }
 };
 
-const content = document.getElementById('content');
+const curatedItems = {
+  calcados: {
+    icon: '🥾',
+    title: 'Calçados de Trilha',
+    subtitle: 'Botas e tênis para diferentes terrenos',
+    items: {
+      feminino: [
+        { brand: "Quechua", name: "Bota Feminina Impermeável NH100 Mid", price: "R$ 399,99", rating: "4.7", img: "https://decathlonstore.vtexassets.com/unsafe/fit-in/1275x1275/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F165845566%2Fshoe-nh100-mid-wp-w-purple-uk-8-eu42-roxa-35-br1.jpg%3Fv%3D638742121934230000", link: "https://www.decathlon.com.br/bota-feminina-impermeavel-de-trilha-nh100-mid-cinza-8871765-quechua/p", store: "Decathlon" },
+        { brand: "Quechua", name: "Bota Feminina Impermeável MH100 Mid", price: "R$ 499,99", rating: "4.6", img: "https://decathlonpro.vtexassets.com/arquivos/ids/172261530/bota-feminina-impermeavel-de-trilha-mh100-mid-quechua-azul-35-br1.jpg?v=639002105249870000", link: "https://www.decathlon.com.br/bota-feminina-impermeavel-de-trilha-mh100-mid-azul-cinza-8851131-quechua/p", store: "Decathlon" }
+      ],
+      masculino: [
+        { brand: "Quechua", name: "Bota Masculina de Trilha NH150 Mid", price: "R$ 399,99", rating: "4.5", img: "https://decathlonstore.vtexassets.com/unsafe/fit-in/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F2588523%2Fnh150-mid-protect-men-sho-uk-11---eu-46-asphalt-blue-481.jpg%3Fv%3D638834546269700000", link: "https://www.decathlon.com.br/bota-masculina-impermeavel-de-trilha-nh150-mid-bege-azul-8554571-quechua/p", store: "Decathlon" },
+        { brand: "Quechua", name: "Bota Masculina de Trilha MH500 Mid", price: "R$ 699,99", rating: "4.7", img: "https://decathlonpro.vtexassets.com/arquivos/ids/25513171/shoes-mh500-mid-wtp-mid-m-m-shoes-pe-45-marrom-401.jpg?v=638064622466370000", link: "https://www.decathlon.com.br/bota-masculina-de-trilha-mh500-mid-quechua-marrom-8618767-quechua/p", store: "Decathlon" }
+      ]
+    }
+  },
+  mochilas: {
+    icon: '🎒',
+    title: 'Mochilas',
+    subtitle: 'Para trilhas e viagens de vários dias',
+    items: {
+      feminino: [],
+      masculino: [
+        {
+          brand: "Weikani",
+          name: "Mochila de Caminhada 65L — Resistente à Água com Capa de Chuva",
+          price: "R$ 142,59",
+          rating: "4.9",
+          img: "https://ae01.alicdn.com/kf/Sa20f40d8a07a47b5ba91169b8391f0ffk.jpg",
+          link: "https://www.awin1.com/cread.php?awinmid=18879&awinaffid=2825476&ued=https%3A%2F%2Fpt.aliexpress.com%2Fitem%2F1005008557659668.html",
+          store: "AliExpress"
+        }
+      ]
+    }
+  },
+  roupas: {
+    icon: '🧥',
+    title: 'Roupas',
+    subtitle: 'Em breve',
+    items: { feminino: [], masculino: [] }
+  },
+  acessorios: {
+    icon: '🧢',
+    title: 'Acessórios',
+    subtitle: 'Em breve',
+    items: { feminino: [], masculino: [] }
+  }
+};
 
-function card(item, i) {
+
+// ═══════════════════════════════════════════
+//  RENDERING HELPERS
+// ═══════════════════════════════════════════
+
+const main = document.getElementById('main');
+const starSVG = `<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+
+function productCard(item, i) {
+  const storeName = item.store || 'Decathlon';
+  const linkLabel = `Ver no ${storeName}`;
+  const fallbackEmoji = storeName === 'AliExpress' ? '🎒' : '🥾';
   return `
     <div class="product-card" style="animation-delay:${i * 0.07}s">
       <div class="product-inner">
         <div class="product-img">
-          <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.parentElement.innerHTML='🥾'">
+          <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.parentElement.innerHTML='${fallbackEmoji}'">
         </div>
         <div class="product-info">
           <div class="product-brand">${item.brand}</div>
           <div class="product-name">${item.name}</div>
           <div class="product-meta">
             <span class="product-price">${item.price}</span>
-            <span class="product-rating">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              ${item.rating}
-            </span>
+            <span class="product-rating">${starSVG} ${item.rating}</span>
           </div>
         </div>
       </div>
-      <a class="product-link" href="${item.link}" target="_blank" rel="noopener">Ver na Decathlon <span class="arrow">&rarr;</span></a>
+      <a class="product-link" href="${item.link}" target="_blank" rel="noopener">${linkLabel} <span class="arrow">&rarr;</span></a>
     </div>`;
 }
 
-function render(key) {
-  const cat = data[key];
-  const hf = cat.feminino && cat.feminino.length > 0;
-  const hm = cat.masculino && cat.masculino.length > 0;
-
-  const criteriaHtml = key === 'calcados' ? `
-    <div class="criteria" style="padding:0 0 28px; max-width:none;">
-      <button class="criteria-toggle" id="criteriaToggle">
-        Por que escolhi esses itens?
-        <span class="chevron">&#9660;</span>
-      </button>
-      <div class="criteria-panel" id="criteriaPanel">
-        <div class="criteria-list">
-          <div class="criteria-item">
-            <div class="criteria-icon">🎨</div>
-            <div class="criteria-text">
-              <h4>Cor escura</h4>
-              <p>Cores claras são inimigas da trilha. Na Patagônia, trilhas terrosas e lamacentas sujam fácil, então tons escuros são mais práticos.</p>
-            </div>
-          </div>
-          <div class="criteria-item">
-            <div class="criteria-icon">🥾</div>
-            <div class="criteria-text">
-              <h4>Cano mais alto</h4>
-              <p>Melhor estabilidade para os tornozelos em terrenos irregulares. Recomendado especialmente para trilheiros menos experientes.</p>
-            </div>
-          </div>
-          <div class="criteria-item">
-            <div class="criteria-icon">💧</div>
-            <div class="criteria-text">
-              <h4>Impermeabilidade</h4>
-              <p>A umidade é constante. Pode pegar chuva e, no inverno, neve. Pés secos ajudam no conforto e na manutenção da temperatura corporal.</p>
-            </div>
-          </div>
-          <div class="criteria-item">
-            <div class="criteria-icon">🏔️</div>
-            <div class="criteria-text">
-              <h4>Cravos multidirecionais</h4>
-              <p>Cravos multidirecionais e um pouco mais altos ajudam na aderência em terrenos molhados e lamacentos da região.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>` : '';
+function genderProducts(fem, masc) {
+  let h = '';
+  const hf = fem && fem.length > 0;
+  const hm = masc && masc.length > 0;
 
   if (!hf && !hm) {
-    content.innerHTML = `
-      ${criteriaHtml}
-      <div class="category-intro">
-        <h2>${cat.title}</h2>
-        <p>${cat.subtitle}</p>
-      </div>
-      <div class="empty-state">
-        <div class="empty-icon">✦</div>
-        <h3>Em breve</h3>
-        <p>Ainda pesquisando os melhores itens<br>para essa categoria. Volte logo!</p>
-      </div>`;
-
-    const criteriaToggle = document.getElementById('criteriaToggle');
-    const criteriaPanel = document.getElementById('criteriaPanel');
-    if (criteriaToggle && criteriaPanel) {
-      criteriaToggle.addEventListener('click', function () {
-        this.classList.toggle('open');
-        criteriaPanel.classList.toggle('open');
-      });
-    }
-    return;
-  }
-
-  let h = `
-    ${criteriaHtml}
-    <div class="category-intro">
-      <h2>${cat.title}</h2>
-      <p>${cat.subtitle}</p>
+    return `<div class="empty-state" style="padding:28px 20px">
+      <div class="empty-icon">✦</div>
+      <h3>Em breve</h3>
+      <p>Ainda pesquisando os melhores itens<br>para essa categoria. Volte logo!</p>
     </div>`;
+  }
 
   if (hf) {
     h += '<div class="gender-section"><div class="gender-label"><span>Feminino</span></div><div class="products">';
-    cat.feminino.forEach((item, i) => {
-      h += card(item, i);
-    });
+    fem.forEach((item, i) => { h += productCard(item, i); });
     h += '</div></div>';
   }
-
   if (hm) {
     h += '<div class="gender-section"><div class="gender-label"><span>Masculino</span></div><div class="products">';
-    cat.masculino.forEach((item, i) => {
-      h += card(item, i + (cat.feminino ? cat.feminino.length : 0));
-    });
+    masc.forEach((item, i) => { h += productCard(item, i + (fem ? fem.length : 0)); });
     h += '</div></div>';
   }
-
   h += '<p class="price-note">* Preços podem estar diferentes no site. Confirme antes de comprar.</p>';
-  content.innerHTML = h;
-
-  const criteriaToggle = document.getElementById('criteriaToggle');
-  const criteriaPanel = document.getElementById('criteriaPanel');
-  if (criteriaToggle && criteriaPanel) {
-    criteriaToggle.addEventListener('click', function () {
-      this.classList.toggle('open');
-      criteriaPanel.classList.toggle('open');
-    });
-  }
+  return h;
 }
 
-document.querySelectorAll('.tab').forEach((tab) => {
+function criteriaBlock(criteria) {
+  if (!criteria || criteria.length === 0) return '';
+  return `
+    <div class="criteria">
+      <button class="criteria-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        Por que escolhi esses itens?
+        <span class="chevron">&#9660;</span>
+      </button>
+      <div class="criteria-panel">
+        <div class="criteria-list">
+          ${criteria.map(c => `
+            <div class="criteria-item">
+              <div class="criteria-icon">${c.icon}</div>
+              <div class="criteria-text">
+                <h4>${c.title}</h4>
+                <p>${c.text}</p>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+function countItems(group) {
+  const f = group.items.feminino ? group.items.feminino.length : 0;
+  const m = group.items.masculino ? group.items.masculino.length : 0;
+  return f + m;
+}
+
+
+// ═══════════════════════════════════════════
+//  VIEWS
+// ═══════════════════════════════════════════
+
+let currentSection = 'destinos';
+let currentDestination = null;
+let currentDestTab = null;
+
+function renderDestinations() {
+  let h = '<div class="destinations-grid">';
+  Object.values(destinations).forEach(d => {
+    h += `
+      <div class="destination-card" ${d.ready ? `onclick="openDestination('${d.id}')"` : ''} style="${!d.ready ? 'opacity:0.6;cursor:default' : ''}">
+        <img class="destination-cover" src="${d.cover}" alt="${d.title}" loading="lazy" onerror="this.style.background='var(--surface)';this.style.height='200px'">
+        <div class="destination-overlay">
+          <div class="destination-flag">${d.flag}</div>
+          <div class="destination-title">${d.title}</div>
+          <div class="destination-desc">${d.desc}</div>
+        </div>
+        <span class="destination-tag ${d.ready ? 'ready' : 'soon'}">${d.ready ? 'Disponível' : 'Em breve'}</span>
+      </div>`;
+  });
+  h += '</div>';
+  main.innerHTML = h;
+}
+
+function openDestination(id) {
+  currentDestination = id;
+  const dest = destinations[id];
+  const catKeys = Object.keys(dest.categories);
+  currentDestTab = catKeys[0] || null;
+
+  let h = `
+    <button class="detail-back" onclick="goBack()">
+      <span class="back-arrow">←</span> Todos os destinos
+    </button>
+    <div class="detail-hero">
+      <h2>${dest.flag} ${dest.title}</h2>
+      <p>${dest.tagline || dest.desc}</p>
+    </div>`;
+
+  if (catKeys.length > 0) {
+    h += `<div class="tabs-container"><div class="tabs" id="destTabs">`;
+    catKeys.forEach((key, i) => {
+      h += `<button class="tab ${i === 0 ? 'active' : ''}" data-desttab="${key}">${dest.categories[key].title}</button>`;
+    });
+    h += `</div></div>`;
+  }
+
+  h += `<div id="destContent" style="padding-top:24px"></div>`;
+  main.innerHTML = h;
+
+  document.querySelectorAll('[data-desttab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('[data-desttab]').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentDestTab = tab.dataset.desttab;
+      renderDestCategory();
+    });
+  });
+
+  renderDestCategory();
+}
+
+function renderDestCategory() {
+  const dest = destinations[currentDestination];
+  const cat = dest.categories[currentDestTab];
+  if (!cat) return;
+
+  const el = document.getElementById('destContent');
+  let h = '';
+  if (cat.criteria) h += criteriaBlock(cat.criteria);
+  h += `<div class="category-intro"><h2>${cat.title}</h2><p>${cat.subtitle}</p></div>`;
+  h += genderProducts(cat.feminino, cat.masculino);
+  el.innerHTML = h;
+}
+
+function renderCurated() {
+  let h = `
+    <div class="curated-intro">
+      <h2>Curadoria de Itens</h2>
+      <p>Recomendações avulsas — para quem já sabe o destino ou quer montar o próprio kit.</p>
+    </div>
+    <div class="curated-categories">`;
+
+  Object.entries(curatedItems).forEach(([key, group], idx) => {
+    const count = countItems(group);
+    const hasItems = count > 0;
+
+    h += `
+      <div class="curated-group" id="cg-${key}" style="animation-delay:${idx * 0.08}s">
+        <button class="curated-group-toggle" onclick="toggleCuratedGroup('${key}')">
+          <div class="curated-group-icon">${group.icon}</div>
+          <div class="curated-group-info">
+            <h3>${group.title}</h3>
+            <p>${hasItems ? count + (count === 1 ? ' item' : ' itens') : group.subtitle}</p>
+          </div>
+          ${hasItems ? `<span class="curated-group-count">${count}</span>` : ''}
+          <span class="curated-group-chevron">▼</span>
+        </button>
+        <div class="curated-group-body">
+          <div class="curated-group-content">`;
+
+    if (hasItems) {
+      h += genderProducts(group.items.feminino, group.items.masculino);
+    } else {
+      h += `<div class="empty-state" style="padding:24px 12px">
+        <div class="empty-icon">✦</div>
+        <p>Em breve teremos recomendações aqui.</p>
+      </div>`;
+    }
+
+    h += `</div></div></div>`;
+  });
+
+  h += '</div>';
+  main.innerHTML = h;
+}
+
+function toggleCuratedGroup(key) {
+  const el = document.getElementById('cg-' + key);
+  if (el) el.classList.toggle('open');
+}
+
+function goBack() {
+  currentDestination = null;
+  renderDestinations();
+}
+
+
+// ═══════════════════════════════════════════
+//  SECTION TABS
+// ═══════════════════════════════════════════
+
+document.querySelectorAll('.section-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
+    document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    render(tab.dataset.tab);
+    currentSection = tab.dataset.section;
+    currentDestination = null;
+
+    if (currentSection === 'destinos') renderDestinations();
+    else renderCurated();
   });
 });
 
-render('calcados');
+
+// ═══════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════
+renderDestinations();
 </script>
 </body>
 </html>
