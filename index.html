@@ -155,13 +155,13 @@
 <div class="hero">
   <div class="hero-badge"><span></span> Travel Gear Guide</div>
   <h1>Gear para <em>Viajar</em></h1>
-  <p>Recomendações de equipamentos testados e aprovados para cada destino — ou para montar seu kit do seu jeito.</p>
+  <p>Recomendações de equipamentos de viagem aprovados para cada destino e curadoria de itens para montar um kit do seu jeito</p>
 </div>
 
 <div class="section-nav">
   <div class="section-tabs">
-    <button class="section-tab active" data-section="destinos">🗺️ Destinos</button>
-    <button class="section-tab" data-section="curadoria">✦ Curadoria</button>
+    <button class="section-tab active" data-section="destinos">🗺️ Por Destino</button>
+    <button class="section-tab" data-section="curadoria">✦ Curadoria de Itens</button>
   </div>
 </div>
 
@@ -352,7 +352,8 @@ function criteriaBlock(criteria) {
 function countItems(group) {
   const f = group.items.feminino ? group.items.feminino.length : 0;
   const m = group.items.masculino ? group.items.masculino.length : 0;
-  return f + m;
+  const t = group.items.todos ? group.items.todos.length : 0;
+  return f + m + t;
 }
 
 
@@ -437,7 +438,7 @@ function renderCurated() {
   let h = `
     <div class="curated-intro">
       <h2>Curadoria de Itens</h2>
-      <p>Recomendações avulsas — para quem já sabe o destino ou quer montar o próprio kit.</p>
+      <p>Recomendações avulsas para quem quer montar o próprio kit.</p>
     </div>
     <div class="curated-categories">`;
 
@@ -460,8 +461,13 @@ function renderCurated() {
           <div class="curated-group-content">`;
 
     if (hasItems) {
-      h += genderProducts(group.items.feminino, group.items.masculino);
-    } else {
+if (group.items.todos) {
+  h += '<div class="products">';
+  group.items.todos.forEach((item, i) => { h += productCard(item, i); });
+  h += '</div><p class="price-note">* Preços podem estar diferentes no site. Confirme antes de comprar.</p>';
+} else {
+  h += genderProducts(group.items.feminino, group.items.masculino);
+}    } else {
       h += `<div class="empty-state" style="padding:24px 12px">
         <div class="empty-icon">✦</div>
         <p>Em breve teremos recomendações aqui.</p>
